@@ -19,16 +19,21 @@ public class AbstractComponent {
     }
 
 
-
-    public void waitForElementToAppear(By findBy){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
+    public void waitForElementToDisappear(WebElement element) throws InterruptedException {
+        Thread.sleep(1000);
+    }
+    public void waitForElementIsVisible(WebElement element){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
     public void waitForElementToAppear(String url){
         WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(5));
         wait.until(ExpectedConditions.urlContains(url));
     }
 
+    public String getUrl() {
+        return driver.getCurrentUrl();
+    }
     @FindBy(xpath = "//div[@class='container']")
     WebElement navbar;
 

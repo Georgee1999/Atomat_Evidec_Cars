@@ -1,6 +1,8 @@
 package tests.LandingPageTests;
 
 
+import org.example.pagesObjects.UserDashboard;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import testComponents.BaseTest;
@@ -11,20 +13,21 @@ import java.util.List;
 
 public class LoginTests extends BaseTest {
 
-
+//LOGIN
     @Test(dataProvider = "getData", groups = {"SuccessLogin"})
-    public void login(HashMap<String, String> input) throws IOException {
-        landingPage.loginApplication(input.get("email"));
+    public void successLogin(HashMap<String, String> input) {
+        UserDashboard userDashboard = landingPage.loginApplication(input.get("email"));
+        Assert.assertEquals(userDashboard.getUrl(),"http://localhost:3000/dashboard");
+        Assert.assertTrue(userDashboard.userInitials());
+    }
+//INVALID LOGIN
+    @Test(dataProvider = "getInvalidData", groups = {"InvalidLogin"})
+    public void invalidEmailLogin(HashMap<String, String> input) throws IOException {
+       String errorLoginMessage =  landingPage.invalidEmailLogin(input.get("email"));
+       Assert.assertEquals(errorLoginMessage,"Uživatel s tímto e-mailem neexistuje!");
     }
 
-    @DataProvider
-    public Object[][] getData() throws IOException {
-        List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\data\\LoginData.json");
-        return new Object[][]{
-                {data.get(0)},
-                {data.get(1)}
-        };
-    }
+
 
 
 

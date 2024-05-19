@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -50,7 +51,7 @@ public class BaseTest {
     }
     @AfterMethod(alwaysRun = true)
     public void tearDown(){
-        driver.close();
+      //  driver.close();
     }
 
     public List<HashMap<String, String>> getJsonDataToMap(String filePath) throws IOException {
@@ -73,5 +74,22 @@ public class BaseTest {
         File file = new File(System.getProperty("user.dir") + "//reports//" + testCaseName + ".png");
         FileUtils.copyFile(source, file);
         return System.getProperty("user.dir") + "//reports//" + testCaseName + ".png";
+    }
+
+    @DataProvider
+    public Object[][] getData() throws IOException {
+        List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\data\\LoginData.json");
+        return new Object[][]{
+                {data.get(0)},
+                {data.get(1)}
+        };
+    }
+    @DataProvider
+    public Object[][] getInvalidData() throws IOException {
+        List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\data\\InvalidLoginData.json");
+        return new Object[][]{
+                {data.get(0)},
+                {data.get(1)}
+        };
     }
 }
