@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Functional Tests">
+    <groups>
+        <run>
+            <include name="SuccessLogin"/>
+        </run>
+    </groups>
+
+    <listeners>
+        <listener class-name="testComponents.Listeners"/>
+    </listeners>
+
+    <test thread-count="2" name="Login Test">
+        <classes>
+            <class name="tests.LandingPageTests.LoginTests"></class>
+        </classes>
+    </test>
+
+    <test thread-count="2" name="UI Tests">
+        <classes>
+            <class name="tests.LandingPageTests.UITests"></class>
+        </classes>
+    </test>
+
+</suite>

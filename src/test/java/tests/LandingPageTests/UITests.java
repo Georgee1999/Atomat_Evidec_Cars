@@ -6,7 +6,7 @@ import testComponents.BaseTest;
 
 public class UITests extends BaseTest {
 
-    @Test
+    @Test(groups = {"UI"})
     public void visibleTextOfElements() {
         Assert.assertEquals(landingPage.getTextOfLoginButton(),"Přihlásit se");
 
