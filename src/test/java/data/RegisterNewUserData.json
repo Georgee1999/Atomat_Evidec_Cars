@@ -1,0 +1,14 @@
+[
+  {
+    "email":"newEmail@email.cz",
+    "firstName":"Karel",
+    "lastName":"Brichta",
+    "address":"Praha 4"
+  },
+  {
+    "email":"newEmail2@email.cz",
+    "firstName":"Petr",
+    "lastName":"Novák",
+    "address":"Ostrava"
+  }
+]

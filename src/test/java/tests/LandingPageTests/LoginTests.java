@@ -20,7 +20,7 @@ public class LoginTests extends BaseTest {
         Assert.assertTrue(userDashboard.userInitials());
     }
 //INVALID LOGIN
-    @Test(dataProvider = "getInvalidUserData", groups = {"InvalidLogin"})
+    @Test(dataProvider = "getInvalidLoginUserData", groups = {"InvalidLogin"})
     public void invalidEmailLogin(HashMap<String, String> input) throws IOException {
        String errorLoginMessage =  landingPage.invalidEmailLogin(input.get("email"));
        Assert.assertEquals(errorLoginMessage,"Uživatel s tímto e-mailem neexistuje!");

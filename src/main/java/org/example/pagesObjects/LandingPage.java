@@ -29,6 +29,8 @@ public class LandingPage extends AbstractComponent {
     WebElement loginButton;
     @FindBy(xpath = "//div[contains(text(),'Uživatel s tímto e-mailem neexistuje!')]")
     WebElement errorLoginMessage;
+    @FindBy(xpath = "//div[@class='errorMessage']")
+    WebElement errorRegisterMessage;
     @FindBy(xpath = "//button[normalize-space()='Registrovat']")
     WebElement registerButton;
     @FindBy(xpath = "//span[normalize-space()='Evidence Aut']")
@@ -45,6 +47,17 @@ public class LandingPage extends AbstractComponent {
     WebElement modalLogin;
     @FindBy(xpath = "//div[@aria-label='Modal']")
     WebElement modalRegister;
+    @FindBy(xpath = "//input[@placeholder=\'E-mail\']")
+    WebElement inputEmailToRegisterUser;
+    @FindBy(xpath = "//input[@placeholder=\'Jméno\']")
+    WebElement inputFirstNameToRegisterUser;
+    @FindBy(xpath = "//input[@placeholder=\'Příjmení\']")
+    WebElement inputLastNameToRegisterUser;
+    @FindBy(xpath = "//input[@placeholder=\'Adresa Bydliště\']")
+    WebElement inputAddressToRegisterUser;
+
+    @FindBy(xpath = "//button[@type=\'submit\']")
+    WebElement submitRegisterButton;
 
 
 
@@ -71,8 +84,27 @@ public class LandingPage extends AbstractComponent {
     }
 
 // FUNCTIONAL (REGISTER)
-
-
+    public UserDashboard register(String email, String firstName, String lastName, String address){
+        registerButton.click();
+        inputEmailToRegisterUser.sendKeys(email);
+        inputFirstNameToRegisterUser.sendKeys(firstName);
+        inputLastNameToRegisterUser.sendKeys(lastName);
+        inputAddressToRegisterUser.sendKeys(address);
+        submitRegisterButton.click();
+        UserDashboard userDashboard = new UserDashboard(driver);
+        waitForElementToAppear("http://localhost:3000/dashboard");
+        return userDashboard;
+    }
+    public Boolean invalidEmailRegister(String email, String firstName, String lastName, String address){
+        registerButton.click();
+        inputEmailToRegisterUser.sendKeys(email);
+        inputFirstNameToRegisterUser.sendKeys(firstName);
+        inputLastNameToRegisterUser.sendKeys(lastName);
+        inputAddressToRegisterUser.sendKeys(address);
+        submitRegisterButton.click();
+        waitForElementIsVisible(errorRegisterMessage);
+        return errorRegisterMessage.isDisplayed();
+    }
 
 // UI
     public String getTextOfLoginButton(){

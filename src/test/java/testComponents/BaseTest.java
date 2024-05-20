@@ -85,21 +85,44 @@ public class BaseTest {
         };
     }
     @DataProvider
-    public Object[][] getInvalidUserData() throws IOException {
+    public Object[][] getOneUsersData() throws IOException {
+        List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\data\\LoginData.json");
+        return new Object[][]{
+                {data.get(0)}
+        };
+    }
+    @DataProvider
+    public Object[][] getInvalidLoginUserData() throws IOException {
         List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\data\\InvalidLoginData.json");
         return new Object[][]{
                 {data.get(0)},
                 {data.get(1)}
         };
     }
+
     @DataProvider
-    public Object[][] getCarsData() throws IOException {
-        List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\data\\CarsData.json");
+    public Object[][] getRegisterCarsData() throws IOException {
+        List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\data\\RegisterNewCarData.json");
         return new Object[][]{
-                {data.get(0)},
-                {data.get(1)},
-                {data.get(2)},
-                {data.get(3)}
+                {data.get(0)}
+
         };
     }
+    @DataProvider
+    public Object[][] getRegisterUserData() throws IOException {
+        List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\data\\RegisterNewUserData.json");
+        return new Object[][]{
+                {data.get(0)},
+                {data.get(1)}
+        };
+    }
+    @DataProvider
+    public Object[][] getInvalidRegisterUserData() throws IOException {
+        List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\data\\InvalidRegisterData.json");
+        return new Object[][]{
+                {data.get(0)},
+                {data.get(1)}
+        };
+    }
+
 }
