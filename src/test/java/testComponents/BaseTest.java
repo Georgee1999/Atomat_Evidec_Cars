@@ -77,7 +77,7 @@ public class BaseTest {
     }
 
     @DataProvider
-    public Object[][] getData() throws IOException {
+    public Object[][] getUserData() throws IOException {
         List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\data\\LoginData.json");
         return new Object[][]{
                 {data.get(0)},
@@ -85,11 +85,21 @@ public class BaseTest {
         };
     }
     @DataProvider
-    public Object[][] getInvalidData() throws IOException {
+    public Object[][] getInvalidUserData() throws IOException {
         List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\data\\InvalidLoginData.json");
         return new Object[][]{
                 {data.get(0)},
                 {data.get(1)}
+        };
+    }
+    @DataProvider
+    public Object[][] getCarsData() throws IOException {
+        List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir") + "\\src\\test\\java\\data\\CarsData.json");
+        return new Object[][]{
+                {data.get(0)},
+                {data.get(1)},
+                {data.get(2)},
+                {data.get(3)}
         };
     }
 }
